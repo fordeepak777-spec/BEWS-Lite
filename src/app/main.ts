@@ -13,6 +13,7 @@ import { ANCHOR_BAR_MS, PROFILE_ANCHOR_REACH_MS, anchorAt } from './traded/ancho
 import type { DataSource } from './source.ts';
 import { loadKernels } from './kernels.ts';
 import { Store, autoTheme, initialState, themeChange } from './store.ts';
+import { createBewsPanel } from '../src/bews-panel.ts';
 import { applyTheme } from './theme.ts';
 import { UiGlass } from './glass/ui-glass.ts';
 import { Sounds } from './sound/sounds.ts';
