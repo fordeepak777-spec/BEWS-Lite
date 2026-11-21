@@ -25,9 +25,7 @@ export interface BewsResult {
   timestamp: number;
 }
 
-type Candle = [
-  number, number, number, number, number, number
-];
+type Candle = number[];
 
 interface BewsMarketState {
   mark: { price: number; asOf: number };
