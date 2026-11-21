@@ -142,6 +142,19 @@ async function main(): Promise<void> {
   // The bar along the bottom (desktop only): connection, venues live, price age, recording, data source, language and theme.
   const statusbar = new StatusBar(source.kind);
   app.append(toolbar.root, main, dock.root, statusbar.root);
+  const bewsPanel = createBewsPanel(() => store.state);
+app.append(bewsPanel.root);
+
+store.subscribe((_state, changed) => {
+  if (
+    changed.has('candles') ||
+    changed.has('candlesTimeframe') ||
+    changed.has('timeframe') ||
+    changed.has('mark')
+  ) {
+    bewsPanel.refresh();
+  }
+});
   toolbar.hostStatusControls(statusbar.controls, statusbar.notices);
   toolbar.setCollapsed(store.state.barCollapsed);
   source.venues.watch?.(entries => statusbar.setVenues(entries));
