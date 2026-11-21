@@ -1,4 +1,4 @@
-
+import type { AppState } from '../app/store.ts';
 /**
  * BEWS Trade Engine v1
  * Independent, read-only market assessment.
@@ -27,12 +27,6 @@ export interface BewsResult {
 
 type Candle = number[];
 
-interface BewsMarketState {
-  mark: { price: number; asOf: number };
-  candles: Candle[];
-  timeframe: string;
-  candlesTimeframe?: string;
-}
 
 const ema = (values: number[], period: number): number | null => {
   if (values.length < period) return null;
@@ -106,7 +100,7 @@ const roundPrice = (price: number): number =>
   Number(price.toPrecision(8));
 
 export function analyzeBews(
-  state: BewsMarketState
+  state: AppState
 ): BewsResult {
   const candles = state.candles || [];
   const closes = candles.map(c => c[4]);
