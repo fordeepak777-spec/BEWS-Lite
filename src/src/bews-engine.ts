@@ -25,8 +25,7 @@ export interface BewsResult {
   timestamp: number;
 }
 
-type Candle = number[];
-
+type Candle = AppState['candles'][number];
 
 const ema = (values: number[], period: number): number | null => {
   if (values.length < period) return null;
